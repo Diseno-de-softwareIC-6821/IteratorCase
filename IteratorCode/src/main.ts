@@ -1,54 +1,49 @@
-import { HopscotchList } from './Structure/Hopscotch';
-import { MainNode } from './Structure/MainNode';
-import { SecondNode } from './Structure/secondNode';
+
+import { HopscotchList } from './Structure/hopscotch-list';
+import { MainNode } from './Structure/main-node';
+import { SecondNode } from './Structure/second-node';
 
 
-const createList = () =>{
-    //Seconds Nodes from first main node
+function main(){
     
-    const first: MainNode  = new MainNode(1,[second1,second2,second3,second4]);
+    const priamryNode1 = new MainNode(3, []);
+    const priamryNode2 = new MainNode(6, []);
+    const primaryNode3 = new MainNode(8, []);
 
-    const second1 : SecondNode = new SecondNode(1,undefined,undefined);
-    const second2 : SecondNode = new SecondNode(2,undefined,undefined);
-    const second3 : SecondNode = new SecondNode(3,undefined,undefined);
-    const second4 : SecondNode = new SecondNode(4,undefined,undefined);
+    const secondaryNode1 = new SecondNode(1);
+    const secondaryNode2 = new SecondNode(2);
+    const secondaryNode3 = new SecondNode(4);
+    const secondaryNode4 = new SecondNode(5);
+    const secondaryNode5 = new SecondNode(7);
+    const secondaryNode6 = new SecondNode(9);
 
-    
-    //Seconds Nodes from second main node
-    const second : MainNode = new MainNode(2,[second5,second6,second7,second8]);
+    priamryNode1.setSecondaryNodes(
+        [secondaryNode1, secondaryNode2, secondaryNode3, secondaryNode4]
+    );
 
-    const second5 : SecondNode = new SecondNode(5,undefined,undefined);
-    const second6 : SecondNode = new SecondNode(6,undefined,undefined);
-    const second7 : SecondNode = new SecondNode(7,undefined,undefined);
-    const second8 : SecondNode = new SecondNode(8,undefined,undefined);
+    priamryNode2.setSecondaryNodes(
+        [secondaryNode3, secondaryNode4, secondaryNode5, undefined]
+    );
 
+    primaryNode3.setSecondaryNodes(
+        [secondaryNode5, undefined, undefined, secondaryNode6]
+    );
 
-    //Seconds Nodes from third main node
-    const third : MainNode = new MainNode(3,[second9,second10,second11,second12]);
-
-    const second9 : SecondNode = new SecondNode(9,undefined,undefined);
-    const second10 : SecondNode = new SecondNode(10,undefined,undefined);
-    const second11 : SecondNode = new SecondNode(11,undefined,undefined);
-    const second12 : SecondNode = new SecondNode(12,undefined,undefined);
-    
-    //Seconds Nodes from fourth main node
-    const fourth : MainNode = new MainNode(4,[second13,second14,second15,second16]);
-
-    const second13 : SecondNode = new SecondNode(13,undefined,undefined);
-    const second14 : SecondNode = new SecondNode(14,undefined,undefined);
-    const second15 : SecondNode = new SecondNode(15,undefined,undefined);
-    const second16 : SecondNode = new SecondNode(16,undefined,undefined);
-
-    //Seconds Nodes from fifth main node
-    const fifth : MainNode = new MainNode(5,[second17,second18,second19,second20]);
-    
-    const second17 : SecondNode = new SecondNode(17,undefined,undefined);
-    const second18 : SecondNode = new SecondNode(18,undefined,undefined);
-    const second19 : SecondNode = new SecondNode(19,undefined,undefined);
-    const second20 : SecondNode = new SecondNode(20,undefined,undefined);
-
-  
-    HopscotchList list = new HopscotchList();
+    secondaryNode1.setFirstMain(undefined).setSecondMain(priamryNode1);
+    secondaryNode2.setFirstMain(undefined).setSecondMain(priamryNode1);
+    secondaryNode3.setFirstMain(priamryNode1).setSecondMain(priamryNode2);
+    secondaryNode4.setFirstMain(priamryNode1).setSecondMain(priamryNode2);
+    secondaryNode5.setFirstMain(priamryNode2).setSecondMain(primaryNode3);
+    secondaryNode6.setFirstMain(primaryNode3).setSecondMain(undefined);
 
 
+    const list = new HopscotchList(priamryNode1);
+
+    for(let i = 0; i < 9; i++){
+        console.log(list.getCurrentNode().getData());
+        list.next();
+    }
 }
+
+
+main()
