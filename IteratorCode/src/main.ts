@@ -39,10 +39,22 @@ function main(){
 
     const list = new HopscotchList(priamryNode1);
 
-    for(let i = 0; i < 9; i++){
-        console.log(list.getCurrentNode().getData());
-        list.next();
+    //logs until 8 because 9 has no next
+    console.log("===========================================")
+    while(list.hasNext()){
+        console.log(list.getCurrentNode().getData())
+        list.next()
     }
+
+    console.log("===========================================")
+    
+    list.reset()
+    for(let i = 0; i < 9; i++){
+        console.log(list.getCurrentNode().getData())
+        list.next()
+    }
+    console.log("===========================================")
+
 }
 
 

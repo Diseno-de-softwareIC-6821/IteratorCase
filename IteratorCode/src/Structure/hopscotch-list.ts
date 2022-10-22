@@ -28,12 +28,26 @@ export class HopscotchList implements Iterator<HopscotchList> {
 
     }
 
+    reset(): void {
+        this.currentPrimary = this.firstNode;
+        this.currentSecondary = this.firstNode.getSecondaryNode(0);
+        this.currentNode = this.firstNode;
+
+        const left = this.firstNode.getLeftSide();
+        for(let i = 0; i < left.length; i++){
+            if(left[i] !== undefined){
+                this.currentNode = left[i]!;
+                break;
+            }
+            this.currentNode = this.firstNode
+        }
+    }
+
     getCurrentNode(): AbstractNode{
         return this.currentNode;
     }
 
     next(): HopscotchList {
-
         if(this.hasNext()){
             const nodes = this.currentPrimary.getSecondaryNodeList()
             const indx = nodes.indexOf(this.currentNode as SecondNode)
